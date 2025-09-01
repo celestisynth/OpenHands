@@ -16,7 +16,11 @@
   "activationEvents": [
     "onCommand:openhands.startConversation",
     "onCommand:openhands.startConversationWithFileContext",
-    "onCommand:openhands.startConversationWithSelectionContext"
+    "onCommand:openhands.startConversationWithSelectionContext",
+    "onCommand:openhands.proactiveAssist"
+  ],
+  "extensionDependencies": [
+    "vscode.git"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -34,6 +38,11 @@
       {
         "command": "openhands.startConversationWithSelectionContext",
         "title": "Start with Selected Text",
+        "category": "OpenHands"
+      },
+      {
+        "command": "openhands.proactiveAssist",
+        "title": "Proactive Assistance",
         "category": "OpenHands"
       }
     ],
@@ -73,6 +82,10 @@
         {
           "command": "openhands.startConversationWithSelectionContext",
           "when": "editorHasSelection"
+        },
+        {
+          "command": "openhands.proactiveAssist",
+          "when": "editorIsOpen"
         }
       ]
     }
@@ -81,7 +94,7 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "test": "npm run compile && node ./out/test/runTest.js",
+    "test": "npm run compile && xvfb-run node ./out/test/runTest.js",
     "package-vsix": "npm run compile && npx vsce package --no-dependencies",
     "lint": "npm run typecheck && eslint src --ext .ts && prettier --check src/**/*.ts",
     "lint:fix": "eslint src --ext .ts --fix && prettier --write src/**/*.ts",
@@ -105,6 +118,8 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prettier": "^5.5.0",
     "eslint-plugin-unused-imports": "^4.1.4",
-    "prettier": "^3.5.3"
+    "prettier": "^3.5.3",
+    "sinon": "^18.0.0",
+    "@types/sinon": "^17.0.3"
   }
 }
