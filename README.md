@@ -180,3 +180,25 @@ For a list of open source projects and licenses used in OpenHands, please see ou
   url={https://openreview.net/forum?id=OJd3ayDDoF}
 }
 ```
+
+## Adding New Models
+
+OpenHands supports the use of custom models. To add a new model, you need to update the `config.toml` file with the model's configuration.
+
+For example, to add the `DeepSeekR1-70B` and `Qwen/Qwen3-Coder-30B-A3B-Instruct` models, you would add the following sections to your `config.toml` file:
+
+```toml
+[llm.DeepSeekR1-70B]
+model = "RedHatAI/DeepSeek-R1-Distill-Llama-70B-FP8-dynamic"
+base_url = "http://100.96.1.18:8002/v1/"
+max_input_tokens = 131072
+custom_llm_provider="openai"
+
+[llm.Qwen-Qwen3-Coder-30B-A3B-Instruct]
+model = "Qwen/Qwen3-Coder-30B-A3B-Instruct"
+base_url = "http://100.96.1.18:8004/v1/"
+max_input_tokens = 131072
+custom_llm_provider="openai"
+```
+
+You can then use these models in your code by referencing their names in the `LLM` constructor. For an example of how to do this, see the `examples/new_model_example.py` file.

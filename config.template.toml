@@ -220,6 +220,19 @@ api_key = ""
 model = "gpt-4o"
 
 
+[llm.DeepSeekR1-70B]
+model = "RedHatAI/DeepSeek-R1-Distill-Llama-70B-FP8-dynamic"
+base_url = "http://100.96.1.18:8002/v1/"
+max_input_tokens = 131072
+custom_llm_provider="openai"
+
+[llm.Qwen-Qwen3-Coder-30B-A3B-Instruct]
+model = "Qwen/Qwen3-Coder-30B-A3B-Instruct"
+base_url = "http://100.96.1.18:8004/v1/"
+max_input_tokens = 131072
+custom_llm_provider="openai"
+
+
 #################################### Agent ###################################
 # Configuration for agents (group name starts with 'agent')
 # Use 'agent' for the default agent config
